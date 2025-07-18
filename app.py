@@ -7,7 +7,7 @@ TOKEN = os.environ.get("BOT_TOKEN")
 
 @app.route(f"/tgwebhookbot.onrender.com/{TOKEN}", methods=["GET"])
 def getSome():
-    return "We are on the same track"    
+    print(f"we get something") 
 
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
