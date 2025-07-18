@@ -10,7 +10,7 @@ TOKEN = os.environ.get("BOT_TOKEN")
 def webhook():
     print(f"inside webhook")
     data = request.get_json()
-    print(f"data - {port}")
+    print(f"data - {data}")
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]
         text = data["message"].get("text", "")
