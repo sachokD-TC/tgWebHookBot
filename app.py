@@ -47,6 +47,12 @@ def webhook():
         "chat_id": chat_id,
         "text": reply
     })
+    if reply != None: 
+        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+        "chat_id": chat_id,
+        "text": "Choose an action:",
+        "reply_markup": keyboard
+         })
     return {"ok": True}        
 
 def postReply(chat_id, reply):
