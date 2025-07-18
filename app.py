@@ -28,7 +28,7 @@ def webhook():
         callback_data = data["callback_query"]["data"]
 
         if callback_data == "say_hello":
-        reply = "👋 Hello there!"
+            reply = "👋 Hello there!"
         elif callback_data == "show_time":
             from datetime import datetime
             reply = f"🕒 Current time: {datetime.now().strftime('%H:%M:%S')}"
