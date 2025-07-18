@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")
 
-@app.route(f"/api.telegram.org/{TOKEN}", methods=["POST"])
+@app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     print(f"inside webhook")
     data = request.get_json()
@@ -14,7 +14,7 @@ def webhook():
         chat_id = data["message"]["chat"]["id"]
         text = data["message"].get("text", "")
         reply = f"You said: {text}"
-        requests.post(f"https://tgwebhookbot.onrender.com/bot{TOKEN}/sendMessage", json={
+        requests.post(f"https://tgwebhookbot.onrender.com/{TOKEN}/sendMessage", json={
             "chat_id": chat_id,
             "text": reply
         })
