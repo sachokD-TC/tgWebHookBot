@@ -8,6 +8,7 @@ TOKEN = os.environ.get("BOT_TOKEN")
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     data = request.get_json()
+    print(f"data - {port}")
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]
         text = data["message"].get("text", "")
