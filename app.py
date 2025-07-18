@@ -4,23 +4,25 @@ import os
 
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")
-
-
-@app.route(f"/{TOKEN}", methods=["POST"])
-def webhook():
-    data = request.get_json()                
-    if "message" in data:        
-        chat_id = data["message"]["chat"]["id"]            
-        text = data["message"].get("text", "")
-        reply = "You said =>" + text
-        keyboard = {
+keyboard = {
         "inline_keyboard": [
             [{"text": "Say Hello", "callback_data": "say_hello"}],
             [{"text": "Хорошо", "callback_data": "good"}],
             [{"text": "Show Time", "callback_data": "show_time"}]
 
         ]
-        }
+        }         
+    
+
+
+@app.route(f"/{TOKEN}", methods=["POST"])
+def webhook():
+    data = request.get_json()       
+    if "message" in data:        
+        chat_id = data["message"]["chat"]["id"]            
+        text = data["message"].get("text", "")
+        reply = "You said =>" + text
+        
         requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
         "chat_id": chat_id,
         "text": "Choose an action:",
