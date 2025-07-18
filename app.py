@@ -15,12 +15,12 @@ def webhook():
         text = data["message"].get("text", "")
         keyboard = {
             "inline_keyboard": [
-                [{"text": "Старт", "url": "https://example.com"}],
-                [{"text": "Хорошо", postReply(chat_id, "Это очень хорошо, когда хорошо")}]
+                [{"text": "Старт", "callback_data": "Start"}],
+                [{"text": "Хорошо", "callback_data": "good_button"}]
             ]
         }
 
-        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
             "chat_id": chat_id,
             "text": "Choose an option:",
             "reply_markup": keyboard
@@ -36,6 +36,18 @@ def postReply(chat_id, reply):
             "chat_id": chat_id,
             "text": reply
         })
+
+
+async def button_callback_handler(update, context):
+    query = update.callback_query
+    await query.answer()  # Acknowledge the callback query
+
+    if query.data == "button_1_pressed":
+        # Call a function or perform an action for Button 1
+        await query.edit_message_text(text="You pressed Button 1!")
+    elif query.data == "button_2_pressed":
+        # Call a function or perform an action for Button 2
+        await query.edit_message_text(text="You pressed Button 2!")
 
 
 @app.route("/")
