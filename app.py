@@ -17,7 +17,7 @@ def webhook():
             ]
         }
 
-        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
             "chat_id": chat_id,
             "text": "Choose an option:",
             "reply_markup": keyboard
