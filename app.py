@@ -40,6 +40,13 @@ def webhook():
             reply=  "Ух ты! Отлично, Нина! 😊 Очень рад за тебя!\n\n"
             "Пусть день будет тёплым и радостным. Хочешь, расскажу смешной анекдот?"
         if callback_data == "say_hello":
+            keyboard = {
+            "inline_keyboard": [
+                [{"text": "Хорошо", "callback_data": "good"}],
+                [{"text": "Show Time", "callback_data": "show_time"}]
+
+                ]
+            }
             reply = "👋 Hello there!"
         elif callback_data == "show_time":
             from datetime import datetime
