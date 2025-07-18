@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")
 
-@app.route(f"/{TOKEN}", methods=["POST"])
+@app.route(f"/tgwebhookbot.onrender.com{TOKEN}", methods=["POST"])
 def webhook():
     print(f"inside webhook")
     data = request.get_json()
