@@ -42,7 +42,8 @@ def webhook():
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
         "chat_id": chat_id,
         "text": reply
-    })        
+    })
+    return {"ok": True}        
 
 def postReply(chat_id, reply):
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
