@@ -23,9 +23,9 @@ def webhook():
         
         keyboard = {
         "keyboard": [
-            [{"text": "Say Hello", "say_hello"}],
-            [{"text": "Хорошо", "good"}],
-            [{"text": "Show Time", "show_time"}]
+            [{"text": "Say Hello", "callback_data": "say_hello"}],
+            [{"text": "Хорошо", "callback_data": "good"}],
+            [{"text": "Show Time", "callback_data": "show_time"}]
 
         ]
         }         
