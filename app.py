@@ -13,6 +13,7 @@ def webhook():
     if "message" in data:        
         chat_id = data["message"]["chat"]["id"]            
         text = data["message"].get("text", "")
+        reply = "You said =>" + text
         keyboard = {
         "inline_keyboard": [
             [{"text": "Say Hello", "callback_data": "say_hello"}],
@@ -30,15 +31,14 @@ def webhook():
     if "callback_query" in data:
         chat_id = data["callback_query"]["message"]["chat"]["id"]
         callback_data = data["callback_query"]["data"]
-
+        reply = "❓ Unknown action."
+    
         if callback_data == "say_hello":
             reply = "👋 Hello there!"
         elif callback_data == "show_time":
             from datetime import datetime
             reply = f"🕒 Current time: {datetime.now().strftime('%H:%M:%S')}"
-        else:
-            reply = "❓ Unknown action."
-
+            
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
         "chat_id": chat_id,
         "text": reply
