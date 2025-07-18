@@ -9,7 +9,20 @@ TOKEN = os.environ.get("BOT_TOKEN")
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     print(f"inside webhook")
-    data = request.get_json()    
+    data = request.get_json()        
+    keyboard = {
+            "inline_keyboard": [
+                [{"text": "Старт", "url": "https://example.com"}],
+                [{"text": "Хорошо", "callback_data": "Как парошел день"}]
+            ]
+        }
+
+        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+            "chat_id": chat_id,
+            "text": "Choose an option:",
+            "reply_markup": keyboard
+        })
+
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]            
         text = data["message"].get("text", "")
