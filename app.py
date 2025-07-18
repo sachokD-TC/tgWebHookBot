@@ -10,22 +10,47 @@ TOKEN = os.environ.get("BOT_TOKEN")
 def webhook():
     print(f"inside webhook")
     data = request.get_json()            
+    
+    keyboard = {
+        "inline_keyboard": [
+            [{"text": "Say Hello", "callback_data": "say_hello"}],
+            [{"text": "Show Time", "callback_data": "show_time"}]
+        ]
+    }
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+        "chat_id": chat_id,
+        "text": "Choose an action:",
+        "reply_markup": keyboard
+    })
+
+    if "callback_query" in data:
+        chat_id = data["callback_query"]["message"]["chat"]["id"]
+        callback_data = data["callback_query"]["data"]
+
+        if callback_data == "say_hello":
+        reply = "👋 Hello there!"
+        elif callback_data == "show_time":
+            from datetime import datetime
+            reply = f"🕒 Current time: {datetime.now().strftime('%H:%M:%S')}"
+        else:
+            reply = "❓ Unknown action."
+
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+        "chat_id": chat_id,
+        "text": reply
+    })
+
     if "message" in data:        
         chat_id = data["message"]["chat"]["id"]            
         text = data["message"].get("text", "")
         keyboard = {
             "inline_keyboard": [
-                [{"text": "Старт", "callback_data": "Start"}],
-                [{"text": "Хорошо", "callback_data": "good_button"}]
+                [{"text": "Старт", "url": "https://example.com"}],
+                [{"text": "Хорошо", "callback_data": "Как прошел день"}]
             ]
         }
-
-    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
-            "chat_id": chat_id,
-            "text": "Choose an option:",
-            "reply_markup": keyboard
-        })
-    if "/start" in text:
+    
+        if "/start" in text:
             postReply(chat_id, "Доброе утро, Нина 🌞\nКак твои дела сегодня?\n\n"
         "Я тут, рядом. Напиши мне, как ты себя чувствуешь. "
         "А если хочешь — просто нажми на кнопку ниже:")                
@@ -36,18 +61,6 @@ def postReply(chat_id, reply):
             "chat_id": chat_id,
             "text": reply
         })
-
-
-async def button_callback_handler(update, context):
-    query = update.callback_query
-    await query.answer()  # Acknowledge the callback query
-
-    if query.data == "button_1_pressed":
-        # Call a function or perform an action for Button 1
-        await query.edit_message_text(text="You pressed Button 1!")
-    elif query.data == "button_2_pressed":
-        # Call a function or perform an action for Button 2
-        await query.edit_message_text(text="You pressed Button 2!")
 
 
 @app.route("/")
