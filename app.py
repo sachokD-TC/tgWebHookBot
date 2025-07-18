@@ -5,10 +5,7 @@ import os
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")
 
-@app.route(f"/{TOKEN}", methods=["GET"])
-def getSome():
-    print(f"we get something") 
-    return "Now we are in getSome method - gogogo"
+
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     print(f"inside webhook")
