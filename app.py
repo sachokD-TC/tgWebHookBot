@@ -16,7 +16,7 @@ def webhook():
         keyboard = {
             "inline_keyboard": [
                 [{"text": "Старт", "url": "https://example.com"}],
-                [{"text": "Хорошо", "callback_data": "Как парошел день"}]
+                [{"text": "Хорошо", postReply(chat_id, "Это очень хорошо, когда хорошо")}]
             ]
         }
 
