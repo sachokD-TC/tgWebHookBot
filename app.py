@@ -15,7 +15,7 @@ def webhook():
         chat_id = data["message"]["chat"]["id"]
         text = data["message"].get("text", "")
         reply = f"You said: {text}"
-        requests.post(f"https://tgwebhookbot.onrender.com/{TOKEN}/sendMessage", json={
+        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
             "chat_id": chat_id,
             "text": reply
         })
