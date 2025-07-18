@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")
 
-@app.route(f"/{TOKEN}", methods=["GET"])
+@app.route(f"/tgwebhookbot.onrender.com/{TOKEN}", methods=["GET"])
 def getSome():
     return "We are on the same track"    
 
