@@ -108,11 +108,11 @@ def webhook():
 
     
     
-    payload = {
-    "chat_id": chat_id,
-    "text": reply,
-    "reply_markup": {
-        "keyboard": [
+        payload = {
+        "chat_id": chat_id,
+        "text": reply,
+        "reply_markup": {
+            "keyboard": [
             [{"text": "Начать общение"}],
             [{"text": "Нормально"}],
             [{"text": "Отлично"}],
@@ -126,10 +126,10 @@ def webhook():
         ],
         "resize_keyboard": True,
         "one_time_keyboard": False
+            }
         }
-    }
     
-    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", payload)
+        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", payload)
     
     return {"ok": True}        
 
