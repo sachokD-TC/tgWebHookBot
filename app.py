@@ -13,8 +13,7 @@ def main_keyboard():
     return markup
 
 @app.route(f"/{TOKEN}", methods=["POST"])
-def webhook():
-    set_variables()
+def webhook():    
     data = request.get_json()       
     reply = None
     if "message" in data:                
