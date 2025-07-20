@@ -32,7 +32,6 @@ def webhook():
         ]
         }
 
-
         chat_id = data["message"]["chat"]["id"]            
         text = data["message"].get("text", "")
         
@@ -107,29 +106,11 @@ def webhook():
                 }        
 
     
-    
-        payload = {
-        "chat_id": chat_id,
-        "text": reply,
-        "reply_markup": {
-            "keyboard": [
-            [{"text": "Начать общение"}],
-            [{"text": "Нормально"}],
-            [{"text": "Отлично"}],
-            [{"text": "Очень хорошо"}],
-            [{"text": "Плохо"}],
-            [{"text": "Очень плохо"}],
-            [{"text": "Как прошел день"}],
-            [{"text": "Анекдот"}],
-            [{"text": "Прощание"}],
-            [{"text": "Помощь"}]
-        ],
-        "resize_keyboard": True,
-        "one_time_keyboard": False
-            }
-        }
-    
-        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", payload)
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+      "chat_id": chat_id,
+       "text": reply,
+       "reply_markup": keyboard
+    })
     
     return {"ok": True}        
 
@@ -140,7 +121,9 @@ def get_keyboard_after_action():
                 [{"text": "Анекдот", "callback_data": "show_time"}],
                 [{"text": "Прощание", "callback_data": "show_time"}],
                 [{"text": "Помощь", "callback_data": "show_time"}]
-                ]
+                ],
+                "resize_keyboard": True,
+                "one_time_keyboard": False
             }
 
 def get_jokes():
