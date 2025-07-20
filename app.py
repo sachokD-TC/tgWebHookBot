@@ -5,6 +5,10 @@ import os
 app = Flask(__name__)
 TOKEN = os.environ.get("BOT_TOKEN")    
 
+def main_keyboard():
+    markup = ReplyKeyboardMarkup(resize_keyboard=True)
+    markup.add(KeyboardButton("Привіт 👋"), KeyboardButton("Допомога ❓"))
+    return markup
 
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
