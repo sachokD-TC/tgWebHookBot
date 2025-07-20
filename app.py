@@ -31,8 +31,8 @@ def webhook():
             [{"text": "Прощание"}],
             [{"text": "Помощь"}]
             ],
-            "resize_keyboard": true,
-            "one_time_keyboard": false
+            "resize_keyboard": True,
+            "one_time_keyboard": False
             }
         }
 
