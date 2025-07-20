@@ -67,6 +67,12 @@ def webhook():
             reply = "Ну что, Нина, как ты планируешь провести свой день?\n"
             "Что-нибудь маленькое приятное запланировано?\n\n"
             "Я тебя слушаю внимательно. Просто напиши мне — я отвечу."
+            keyboard = {
+            "keyboard": [                        
+                [{"text": "Анекдот"}],
+                [{"text": "Прощание"}]                
+                ]
+            }
 
         if len(text) > 20:
             encouragements = get_encouragements()
@@ -98,11 +104,11 @@ def webhook():
             "Пусть дальше будет легче, теплее и чуть-чуть светлее. Я здесь. Обнимаю мысленно.\n\n"
             "До завтра, моя хорошая 🤗"
             keyboard = {
-                "keyboard": [                                                                    
+                "keyboard": [[{"text": "Всего хорошего Нина"}]                                                                 
                 ]
                 }        
 
-    if reply is None:
+    if reply == "null":
        reply = "";
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
       "chat_id": chat_id,
@@ -115,10 +121,10 @@ def webhook():
 def get_keyboard_after_action():
     return  {
             "keyboard": [            
-                [{"text": "Как прошел день", "callback_data": "show_time"}],
-                [{"text": "Анекдот", "callback_data": "show_time"}],
-                [{"text": "Прощание", "callback_data": "show_time"}],
-                [{"text": "Помощь", "callback_data": "show_time"}]
+                [{"text": "Как прошел день"}],
+                [{"text": "Анекдот"}],
+                [{"text": "Прощание"}],
+                [{"text": "Помощь"}]
                 ],
                 "resize_keyboard": True,
                 "one_time_keyboard": False
