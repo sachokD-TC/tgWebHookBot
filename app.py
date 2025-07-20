@@ -107,13 +107,29 @@ def webhook():
                 }        
 
     
-    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
-      "chat_id": chat_id,
-       "text": reply,
-       "reply_markup": keyboard,
-       "resize_keyboard": true,
-       "one_time_keyboard": false
-    })
+    
+    payload = {
+    "chat_id": chat_id,
+    "text": reply,
+    "reply_markup": {
+        "keyboard": [
+            [{"text": "Начать общение"}],
+            [{"text": "Нормально"}],
+            [{"text": "Отлично"}],
+            [{"text": "Очень хорошо"}],
+            [{"text": "Плохо"}],
+            [{"text": "Очень плохо"}],
+            [{"text": "Как прошел день"}],
+            [{"text": "Анекдот"}],
+            [{"text": "Прощание"}],
+            [{"text": "Помощь"}]
+        ],
+        "resize_keyboard": True,
+        "one_time_keyboard": False
+        }
+    }
+    
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", payload)
     
     return {"ok": True}        
 
