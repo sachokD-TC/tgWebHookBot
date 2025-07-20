@@ -15,7 +15,7 @@ def main_keyboard():
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():    
     data = request.get_json()       
-    reply = None
+    reply = "Нажми на кнопку";
     if "message" in data:                
         keyboard = {
         "keyboard": [
@@ -107,9 +107,7 @@ def webhook():
                 "keyboard": [[{"text": "Всего хорошего Нина"}]                                                                 
                 ]
                 }        
-
-    if reply == "null":
-       reply = "Нажми на одну из кнопок внизу";
+        
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
       "chat_id": chat_id,
        "text": reply,
