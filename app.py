@@ -17,8 +17,7 @@ def webhook():
     data = request.get_json()       
     reply = None
     if "message" in data:                
-        keyboard = {
-        "reply_markup": {
+        keyboard = {         
             "keyboard": [
             [{"text": "Начать общение"}],
             [{"text": "Нормально"}],
@@ -31,9 +30,8 @@ def webhook():
             [{"text": "Прощание"}],
             [{"text": "Помощь"}]
             ],
-            "resize_keyboard": True,
-            "one_time_keyboard": False
-            }
+            "resize_keyboard": true,
+            "one_time_keyboard": false            
         }
 
 
