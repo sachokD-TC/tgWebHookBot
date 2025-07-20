@@ -17,7 +17,7 @@ def webhook():
     data = request.get_json()       
     reply = None
     if "message" in data:                
-        keyboard = {         
+        keyboard = {
             "keyboard": [
             [{"text": "Начать общение"}],
             [{"text": "Нормально"}],
@@ -29,9 +29,7 @@ def webhook():
             [{"text": "Анекдот"}],
             [{"text": "Прощание"}],
             [{"text": "Помощь"}]
-            ],
-            "resize_keyboard": true,
-            "one_time_keyboard": false            
+            ]
         }
 
 
@@ -112,7 +110,9 @@ def webhook():
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
       "chat_id": chat_id,
        "text": reply,
-       "reply_markup": keyboard
+       "reply_markup": keyboard,
+       "resize_keyboard": true,
+       "one_time_keyboard": false
     })
     
     return {"ok": True}        
