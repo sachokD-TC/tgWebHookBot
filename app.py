@@ -49,8 +49,7 @@ def webhook():
     set_variables()
     data = request.get_json()       
     reply = None
-    if "message" in data:        
-        
+    if "message" in data:                
         keyboard = {
         "keyboard": [
             [{"text": "Начать общение", "callback_data": "say_hello"}],
