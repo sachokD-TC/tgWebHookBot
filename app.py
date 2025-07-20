@@ -27,8 +27,7 @@ def webhook():
             [{"text": "Очень плохо"}],
             [{"text": "Как прошел день"}],
             [{"text": "Анекдот"}],
-            [{"text": "Прощание"}],
-            [{"text": "Помощь"}]
+            [{"text": "Прощание"}]            
         ],
             "resize_keyboard": True,
             "one_time_keyboard": False
@@ -74,8 +73,7 @@ def webhook():
             reply = random.choice(encouragements)
             keyboard = {
                     "keyboard": [                                    
-                [{"text": "Прощание", "callback_data": "show_time"}],
-                [{"text": "Помощь", "callback_data": "show_time"}]
+                [{"text": "Прощание"}]                
                 ]
                 }                
         if text == "Анекдот":
@@ -83,9 +81,8 @@ def webhook():
             reply = f"Вот тебе анекдот, Ниночка 😊\n\n{random.choice(jokes)}\n\n😄 Улыбнулась? Тогда день точно станет лучше!"
             keyboard = {
             "keyboard": [                        
-                [{"text": "Еще Анекдот", "callback_data": "show_time"}],
-                [{"text": "Прощание", "callback_data": "show_time"}],
-                [{"text": "Помощь", "callback_data": "show_time"}]
+                [{"text": "Еще Анекдот"}],
+                [{"text": "Прощание"}]                
                 ]
             }
         if text == "Еще Анекдот":
@@ -93,8 +90,7 @@ def webhook():
             reply = f"Ещё один? Держись!\n\n{random.choice(jokes)}\n\n😄"
             keyboard = {
                     "keyboard": [                                    
-                [{"text": "Прощание", "callback_data": "show_time"}],
-                [{"text": "Помощь", "callback_data": "show_time"}]
+                [{"text": "Прощание"}]                
                 ]
                 }                
         if text == "Прощание":
@@ -102,17 +98,16 @@ def webhook():
             "Пусть дальше будет легче, теплее и чуть-чуть светлее. Я здесь. Обнимаю мысленно.\n\n"
             "До завтра, моя хорошая 🤗"
             keyboard = {
-                "keyboard": [                                                    
-                [{"text": "Помощь", "callback_data": "show_time"}]
+                "keyboard": [                                                                    
                 ]
                 }        
 
-    
-    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
-      "chat_id": chat_id,
-       "text": reply,
-       "reply_markup": keyboard
-    })
+    if reply != null:
+        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+        "chat_id": chat_id,
+        "text": reply,
+        "reply_markup": keyboard
+        })
     
     return {"ok": True}        
 
