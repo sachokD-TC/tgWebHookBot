@@ -102,12 +102,13 @@ def webhook():
                 ]
                 }        
 
-    if reply != null:
-        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
-        "chat_id": chat_id,
-        "text": reply,
-        "reply_markup": keyboard
-        })
+    if reply == null:
+       reply = "";
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+      "chat_id": chat_id,
+       "text": reply,
+       "reply_markup": keyboard
+    })
     
     return {"ok": True}        
 
