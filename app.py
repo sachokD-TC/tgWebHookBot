@@ -19,17 +19,19 @@ def webhook():
     if "message" in data:                
         keyboard = {
         "keyboard": [
-            [{"text": "Начать общение", "callback_data": "say_hello"}],
-            [{"text": "Нормально", "callback_data": "good"}],
-            [{"text": "Отлично", "callback_data": "show_time"}],
-            [{"text": "Очень хорошо", "callback_data": "show_time"}],
-            [{"text": "Плохо", "callback_data": "show_time"}],
-            [{"text": "Очень плохо", "callback_data": "show_time"}],
-            [{"text": "Как прошел день", "callback_data": "show_time"}],
-            [{"text": "Анекдот", "callback_data": "show_time"}],
-            [{"text": "Прощание", "callback_data": "show_time"}],
-            [{"text": "Помощь", "callback_data": "show_time"}]
-        ]
+            [{"text": "Начать общение"}],
+            [{"text": "Нормально"}],
+            [{"text": "Отлично"}],
+            [{"text": "Очень хорошо"}],
+            [{"text": "Плохо"}],
+            [{"text": "Очень плохо"}],
+            [{"text": "Как прошел день"}],
+            [{"text": "Анекдот"}],
+            [{"text": "Прощание"}],
+            [{"text": "Помощь"}]
+        ],
+            "resize_keyboard": True,
+            "one_time_keyboard": False
         }
 
         chat_id = data["message"]["chat"]["id"]            
