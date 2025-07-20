@@ -53,11 +53,12 @@ def webhook():
             reply = "Ух ты! Отлично, Нина! 😊 Очень рад за тебя!\n\n"
         "Пусть день будет тёплым и радостным. Хочешь, расскажу смешной анекдот?"
 
-    if reply != None:   
-       requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
-       "chat_id": chat_id,
-       "text": reply
-       })
+    
+    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
+      "chat_id": chat_id,
+       "text": reply,
+       "reply_markup": keyboard
+    })
     
     return {"ok": True}        
 
