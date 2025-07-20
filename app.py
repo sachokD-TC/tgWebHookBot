@@ -34,7 +34,7 @@ def webhook():
         if text == "Say Hello":
             reply =  "Доброе утро, Нина 🌞\nКак твои дела сегодня?\n\ Я тут, рядом. Напиши мне, как ты себя чувствуешь. А если хочешь — просто нажми на кнопку ниже:"
                                  
-        if reply != None    
+        if reply != None:   
             requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
                 "chat_id": chat_id,
                 "text": reply
