@@ -67,6 +67,15 @@ def webhook():
             "Что-нибудь маленькое приятное запланировано?\n\n"
             "Я тебя слушаю внимательно. Просто напиши мне — я отвечу."
 
+        if len(text) > 20:
+            encouragements = get_encouragements()
+            reply = random.choice(encouragements)
+            keyboard = {
+                    "keyboard": [                                    
+                [{"text": "Прощание", "callback_data": "show_time"}],
+                [{"text": "Помощь", "callback_data": "show_time"}]
+                ]
+                }                
         if text == "Анекдот":
             jokes = get_jokes()
             reply = f"Вот тебе анекдот, Ниночка 😊\n\n{random.choice(jokes)}\n\n😄 Улыбнулась? Тогда день точно станет лучше!"
@@ -78,6 +87,7 @@ def webhook():
                 ]
             }
         if text == "Еще Анекдот":
+            jokes = get_jokes()
             reply = f"Ещё один? Держись!\n\n{random.choice(jokes)}\n\n😄"
             keyboard = {
                     "keyboard": [                                    
@@ -93,10 +103,7 @@ def webhook():
                 "keyboard": [                                                    
                 [{"text": "Помощь", "callback_data": "show_time"}]
                 ]
-                }
-        if len(text) > 15:
-            encouragements = get_encouragements()
-            random.choice(encouragements)
+                }        
 
     
     requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={
